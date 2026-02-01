@@ -155,7 +155,6 @@ tensorboard --logdir=tensorboard_logs
 · Full model weights: controlnet_step_xxx.pth / controlnet_epoch_xxx.pth
  ·WebUI compatible final model: controlnet_sketch_guided_sr_webui.pth (automatically exported after 
  training completion, for direct deployment)
-
 # 5.Training Result Verification
 After training, check the trained_model directory for the WebUI compatible model file controlnet_sketch_guided_sr_webui.pth—this file is the final training result and will be used for subsequent WebUI deployment.
 
