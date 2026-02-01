@@ -58,7 +58,7 @@ encoder_hidden_size: 768
 down_block_types: ["DownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D"]
 up_block_types: ["CrossAttnUpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D", "UpBlock2D"]
 ```
-#Step 3: Restart Stable Diffusion WebUI
+# Step 3: Restart Stable Diffusion WebUI
 
 Close any running WebUI instances and restart to load the new model. Use the following command to enable xFormers for acceleration:
 
@@ -67,9 +67,10 @@ Close any running WebUI instances and restart to load the new model. Use the fol
 webui-user.bat --xformers
 ```
 # Linux/Mac
+```
 ./webui.sh --xformers
-
-#Step 4: Verify Model Loading
+```
+# Step 4: Verify Model Loading
 
 1. Open Stable Diffusion WebUI in your browser (default: http://localhost:7860).
 
@@ -79,7 +80,7 @@ webui-user.bat --xformers
 
 4. If the model appears in the dropdown, deployment is successful.
 
-#Inference Guide (WebUI Operation)
+# Inference Guide (WebUI Operation)
 
 Follow these steps to generate high-resolution images using the deployed model:
 
