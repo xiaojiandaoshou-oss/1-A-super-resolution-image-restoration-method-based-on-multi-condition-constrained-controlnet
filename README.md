@@ -1,8 +1,7 @@
-# ControlNet Sketch-Guided Super-Resolution Deployment Guide
 
 # Overview
 
-This guide details the deployment process of a dual-condition ControlNet model (trained for sketch-guided image and segmentation map super-resolution) to Stable Diffusion WebUI. The model takes a low-resolution image and a corresponding sketch as inputs, then generates a high-resolution image while preserving content and structure.
+This guide details the deployment process of a dual-condition ControlNet model (trained for sketch-guided image and segmentation map super-resolution) to Stable Diffusion WebUI. The model takes a low-resolution image and a corresponding sketch or a segmentation map   as inputs, then generates a high-resolution image while preserving content and structure.
 
 # Key Specifications
 Base Model: Stable Diffusion v1.5
