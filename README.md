@@ -15,7 +15,9 @@ Inference Env: Stable Diffusion WebUI + ControlNet Extension
 # Prerequisites (For Training & Deployment)
 Ensure the following dependencies and files are prepared before training or deployment (shared environment for both training and deployment, no need to build separately):
 1.[Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+
 2.[ControlNet Extension for WebUI](https://github.com/Mikubill/sd-webui-controlnet)
+
 Clone to WebUI extension directory:
 ```
 cd stable-diffusion-webui/extensions
