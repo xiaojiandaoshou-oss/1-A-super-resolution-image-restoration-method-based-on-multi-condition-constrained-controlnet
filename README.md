@@ -15,21 +15,21 @@ Inference Env: Stable Diffusion WebUI + ControlNet Extension
 # Prerequisites (For Training & Deployment)
 Ensure the following dependencies and files are prepared before training or deployment (shared environment for both training and deployment, no need to build separately):
 
-1.[Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+# 1.[Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 
-2.[ControlNet Extension for WebUI](https://github.com/Mikubill/sd-webui-controlnet)
+# 2.[ControlNet Extension for WebUI](https://github.com/Mikubill/sd-webui-controlnet)
 
 Clone to WebUI extension directory:
 ```
 cd stable-diffusion-webui/extensions
 git clone https://github.com/Mikubill/sd-webui-controlnet.git
 ```
-3.Python Environment (3.8~3.10 recommended)
+# 3.Python Environment (3.8~3.10 recommended)
 Install core dependencies for training (one-click command):
 ```
 pip install torch==2.0.1 torchvision==0.15.2 diffusers==0.26.0 peft==0.8.2 accelerate==0.27.2 albumentations tqdm tensorboard opencv-python numpy
 ```
-4.Trained/To-Train Model Files
+# 4.Trained/To-Train Model Files
 For training: Only need the official SD1.5 base model (automatically downloaded by the code)
 For deployment: Trained model weight (controlnet_sketch_guided_sr_webui.pth) + matching YAML config file (controlnet_sketch_guided_sr_webui.yaml)
 
@@ -156,7 +156,7 @@ tensorboard --logdir=tensorboard_logs
  ·WebUI compatible final model: controlnet_sketch_guided_sr_webui.pth (automatically exported after 
  training completion, for direct deployment)
 
-Training Result Verification
+# 5.Training Result Verification
 After training, check the trained_model directory for the WebUI compatible model file controlnet_sketch_guided_sr_webui.pth—this file is the final training result and will be used for subsequent WebUI deployment.
 
 Note: If the training is stopped early (not completed), select the model file with the smallest loss (e.g., controlnet_step_1000.pth) and rename it to controlnet_sketch_guided_sr_webui.pth for deployment.
