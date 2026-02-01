@@ -33,10 +33,10 @@ For deployment: Trained model weight (controlnet_sketch_guided_sr_webui.pth) + m
 # Model Training Guide (Core Content)
 1. Training Code Preparation
 Create a training script file train_controlnet_sketch_guided_sr.py in the project root directory, copy the complete training code (you can place the code in your GitHub repo and fill in the actual link here) into the file. The code has the following key features:
-Supports 6-channel dual-condition input (low-res image + sketch)
-Default enables LoRA lightweight training (≤1% trainable parameters, 12GB GPU available)
-Automatic dataset pairing verification, tensorboard log recording, breakpoint resume training
-One-click export of WebUI-compatible model weights (no additional conversion required)
+· Supports 6-channel dual-condition input (low-res image + sketch)
+· Default enables LoRA lightweight training (≤1% trainable parameters, 12GB GPU available)
+· Automatic dataset pairing verification, tensorboard log recording, breakpoint resume training
+· One-click export of WebUI-compatible model weights (no additional conversion required)
 2. Dataset Preparation (Critical for Training)
 The model requires triple paired datasets (low-res image + sketch + high-res image) with 100% consistent filenames (to avoid data misalignment). Follow the directory structure below to organize the dataset:
 Standard Dataset Directory Structure
@@ -58,10 +58,10 @@ your-project/
 └─ train_controlnet_sketch_guided_sr.py  # Training script
 ```
 Dataset Production Requirements
-Size Consistency: Low-res images and sketches must be 256×256, high-res target images must be 512×512 (consistent with model input/output settings)
-Filename Consistency: The three files corresponding to the same sample must have the same name and suffix (e.g., 001.png in all three folders)
-Format Compatibility: Support PNG/JPG/JPEG; single-channel gray sketches are automatically converted to 3-channel RGB by the code
-Dataset Scale: ≥1000 samples (avoid overfitting); unified style (e.g., only anime/only real scenes) is recommended
+1.Size Consistency: Low-res images and sketches must be 256×256, high-res target images must be 512×512 (consistent with model input/output settings)
+2.Filename Consistency: The three files corresponding to the same sample must have the same name and suffix (e.g., 001.png in all three folders)
+3.Format Compatibility: Support PNG/JPG/JPEG; single-channel gray sketches are automatically converted to 3-channel RGB by the code
+4.Dataset Scale: ≥1000 samples (avoid overfitting); unified style (e.g., only anime/only real scenes) is recommended
 Quick Dataset Generation (Batch Resize)
 If you only have high-resolution original images, use the following code to batch generate low-resolution images and resize sketches/high-res images to the specified size:
 python
@@ -131,19 +131,20 @@ python train_controlnet_sketch_guided_sr.py
 python -m torch.distributed.run --nproc_per_node=1 train_controlnet_sketch_guided_sr.py
 ```
 Key Training Process Notes
-First run: The code will automatically download the SD1.5 base model (≈4GB) from Hugging Face, it is recommended to use a proxy for acceleration; the model will be cached locally after the first download, and no repeated download is required for subsequent training.
-Loss change: The training loss will gradually decrease and stabilize (normal range: from ~1.0 to <0.1). If the loss rises continuously, check the dataset filename pairing and image size.
-Log monitoring: Use TensorBoard to view real-time loss and learning rate changes (run the command below and access http://localhost:6006 in the browser):
+ 1.First run: The code will automatically download the SD1.5 base model (≈4GB) from Hugging Face, it is recommended to use a proxy for acceleration; the model will be cached locally after the first download, and no repeated download is required for subsequent training.
+ 2.Loss change: The training loss will gradually decrease and stabilize (normal range: from ~1.0 to <0.1). If the loss rises continuously, check the dataset filename pairing and image size.
+ 3.Log monitoring: Use TensorBoard to view real-time loss and learning rate changes (run the command below and access http://localhost:6006 in the browser):
 ```
 tensorboard --logdir=tensorboard_logs
 ```
-Breakpoint resume training: If the training is interrupted due to GPU downtime/power failure, re-run the training command directly—the code will automatically load the latest saved model and continue training.
-Model saving: The code will automatically save the model every 500 steps and at the end of each epoch in the trained_model directory, including:
-LoRA weights (if USE_LORA=True): lora_step_xxx/ folder
-Full model weights: controlnet_step_xxx.pth / controlnet_epoch_xxx.pth
-WebUI compatible final model: controlnet_sketch_guided_sr_webui.pth (automatically exported after training completion, for direct deployment)
+5. epoch in the trained_model directory, including:
+· LoRA weights (if USE_LORA=True): lora_step_xxx/ folder
+· Full model weights: controlnet_step_xxx.pth / controlnet_epoch_xxx.pth
+ ·WebUI compatible final model: controlnet_sketch_guided_sr_webui.pth (automatically exported after 
+ training completion, for direct deployment)
 5. Training Result Verification
 After training, check the trained_model directory for the WebUI compatible model file controlnet_sketch_guided_sr_webui.pth—this file is the final training result and will be used for subsequent WebUI deployment.
+
 Note: If the training is stopped early (not completed), select the model file with the smallest loss (e.g., controlnet_step_1000.pth) and rename it to controlnet_sketch_guided_sr_webui.pth for deployment.
 
 # Deployment Steps
